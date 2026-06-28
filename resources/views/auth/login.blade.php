@@ -6,7 +6,7 @@
 <div class="card p-4 border-0 shadow-sm auth-card">
     <div class="text-center mb-4">
         <div class="d-flex align-items-center justify-content-center mb-2">
-            <i class="bi bi-wallet2 text-primary fs-3 me-2"></i>
+            <img class="fs-4 me-2" width="50" src="{{asset('icons/logo.png')}}" alt="ExpenseTracker Logo">
             <span class="fw-bold fs-4">ExpenseTracker</span>
         </div>
         <h6 class="fw-bold text-dark mt-3">Welcome back!</h6>

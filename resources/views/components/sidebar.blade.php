@@ -1,6 +1,6 @@
 <nav class="col-md-3 col-lg-2 d-none d-md-block bg-white sidebar border-end vh-100 position-sticky top-0 p-3">
     <div class="d-flex align-items-center mb-4 pb-2 border-bottom">
-        <i class="bi bi-wallet2 text-primary fs-4 me-2"></i>
+        <img class="fs-4 me-2" width="50" src="{{asset('icons/logo.png')}}" alt="ExpenseTracker Logo">
         <span class="fw-bold fs-5">ExpenseTracker</span>
     </div>
     <ul class="nav nav-pills flex-column mb-auto gap-2">
