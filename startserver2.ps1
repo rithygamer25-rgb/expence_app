@@ -1,0 +1,1 @@
+﻿Start-Process -WindowStyle Hidden -FilePath "D:\Laravel\expence_app\Start_Server.bat"

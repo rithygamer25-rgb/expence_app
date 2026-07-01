@@ -32,23 +32,29 @@
                 @include('components.sidebar')
 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pb-5">
-                    <div class="d-flex justify-content-between align-items-center py-3 mb-4 border-bottom">
-                        <div>
+                    <div class="py-3 mb-4 border-bottom">
+                        <div class="d-flex justify-content-between align-items-center gap-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="{{ asset('icons/logo.png') }}" width="40" alt="ExpenseTracker Logo">
+                                <span class="fw-bold fs-5 mb-0">ExpenseTracker</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2 mobile-nav-actions">
+                                <a href="/scan" class="btn btn-dark btn-sm d-md-none">
+                                    <i class="bi bi-qr-code-scan me-1"></i> Scan
+                                </a>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="fw-semibold d-none d-sm-inline">{{Auth::user()->name}}</span>
+                                    <a href="/profile">
+                                        <div class="bg-secondary rounded-circle text-white d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2">
                             <h5 class="m-0 fw-bold">@yield('page-title', 'Welcome back!')</h5>
                             <small class="text-muted">@yield('page-subtitle', 'Manage your financials easily')</small>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <a href="/scan" class="btn btn-dark btn-sm d-md-none me-2">
-                                <i class="bi bi-qr-code-scan me-1"></i> Scan
-                            </a>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="fw-semibold d-none d-sm-inline">{{Auth::user()->name}}</span>
-                                <a href="/profile">
-                                <div class="bg-secondary rounded-circle text-white d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
-                                    <i class="bi bi-person"></i>
-                                </div>
-                                </a>
-                            </div>
                         </div>
                     </div>
 

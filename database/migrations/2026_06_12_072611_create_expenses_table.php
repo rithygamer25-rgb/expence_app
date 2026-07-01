@@ -18,9 +18,9 @@ return new class extends Migration
         $table->date('date');
         $table->decimal('amount', 10, 2);
         
-        // CHANGED THIS: Replaced plain text strings with structural table relations
-        $table->foreignId('category_id')->constrained('categories')->onDelete('restrict');
-        $table->foreignId('payment_method_id')->constrained('payment_methods')->onDelete('restrict');
+        // FIXED HERE: Changed 'restrict' to 'no action' for SQL Server compatibility
+        $table->foreignId('category_id')->constrained('categories')->onDelete('no action');
+        $table->foreignId('payment_method_id')->constrained('payment_methods')->onDelete('no action');
         
         $table->timestamps();
     });

@@ -289,33 +289,33 @@ PROMPT;
     public function analytics()
     {
         $userId = Auth::id();
-    
+
         // 1. Core aggregates
         $totalSpent = Expense::where('user_id', $userId)->sum('amount');
         $averageExpense = Expense::where('user_id', $userId)->avg('amount') ?? 0.00;
         $topExpense = Expense::where('user_id', $userId)->max('amount') ?? 0.00;
-    
-        // 2. FIXED: Aggregate Grouped By Category Name
+
+        // 2. Aggregate Grouped By Category Name
         $categoryCollection = Expense::where('expenses.user_id', $userId)
             ->join('categories', 'expenses.category_id', '=', 'categories.id')
             ->select('categories.name', DB::raw('SUM(expenses.amount) as total'))
             ->groupBy('categories.name')
             ->pluck('total', 'name')
             ->toArray();
-    
-        // 3. FIXED: 6-Month Trend correctly grouped by Year and Month strings together
+
+        // 3. FIXED: 6-Month Trend using SQL Server FORMAT syntax and repeating functions in groupBy
         $trendsRaw = Expense::where('expenses.user_id', $userId)
             ->where('date', '>=', Carbon::now()->subMonths(5)->startOfMonth())
             ->select(
-                DB::raw("DATE_FORMAT(date, '%b %Y') as month_label"), 
+                DB::raw("FORMAT(date, 'MMM yyyy') as month_label"), 
                 DB::raw('SUM(amount) as total'),
-                DB::raw("DATE_FORMAT(date, '%Y-%m') as month_order")
+                DB::raw("FORMAT(date, 'yyyy-MM') as month_order")
             )
-            ->groupBy('month_label', 'month_order')
+            ->groupBy(DB::raw("FORMAT(date, 'MMM yyyy')"), DB::raw("FORMAT(date, 'yyyy-MM')"))
             ->orderBy('month_order', 'asc')
             ->pluck('total', 'month_label')
             ->toArray();
-    
+
         return view('analytics', [
             'totalSpent'     => $totalSpent,
             'averageExpense' => $averageExpense,

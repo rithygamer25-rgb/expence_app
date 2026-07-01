@@ -24,5 +24,6 @@ body {
 
 /* Keep main clear of the mobile menu */
 @media (max-width: 767.98px) { 
-    main { padding-bottom: 75px !important; } 
+    main { padding-bottom: 75px !important; }
+    .mobile-nav-actions { margin-top: 0 !important; }
 }
